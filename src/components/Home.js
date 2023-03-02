@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from "react";
-import Row from "./Row/index";
-import {
-  TRENDING,
-  ORIGIN,
-  TOP_RATED,
-  ACTION_MOVIES,
-  COMEDY_MOVIES,
-  HORROR_MOVIES,
-  ROMANCE_MOVIES,
-  DOCUMENTARIES,
-} from "../config";
+//components
+import Row from "./Row";
+import Banner from "./Banner";
+//Urls for api pull or fetch
+import { moviesUrl } from "../config";
 
 const Home = () => {
+  const NetflixOrg = moviesUrl.filter((movie) => movie.id === 1);
+
   return (
-    <>
-      <Row title="NETFLIX ORIGINALS" url={ORIGIN} />
-      <Row title="Trending Now" url={TRENDING} />
-    </>
+    <div>
+      <Banner url={NetflixOrg[0].url} />
+
+      {moviesUrl.map((item) => (
+        <Row
+          title={item.title}
+          url={item.url}
+          isLarge={item.isLargeRow}
+          key={item.id}
+        />
+      ))}
+    </div>
   );
 };
 

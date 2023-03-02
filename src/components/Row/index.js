@@ -6,7 +6,7 @@ import { IMAGE_URL } from "../../config";
 // style row
 import "./row.css";
 
-const Row = ({ title, url }) => {
+const Row = ({ title, url, isLarge }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -21,10 +21,12 @@ const Row = ({ title, url }) => {
   return (
     <div className="row">
       <h2>{title}</h2>
-      <div className="row-item">
+      <div className={`row-items ${isLarge && "bg-img"}`}>
         {movies.map((movie) => (
           <img
-            src={`${IMAGE_URL}${movie.backdrop_path}`}
+            src={`${IMAGE_URL}${
+              isLarge ? movie.poster_path : movie.backdrop_path
+            }`}
             key={movie.id}
             alt={movie.name}
           />

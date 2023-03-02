@@ -1,13 +1,16 @@
-.row-item {
+.row {
+  margin-left: 15px;
+}
+.row-items {
   display: flex;
   overflow-y: hidden;
   overflow-x: scroll;
   padding: 20px;
 }
-.row-item::-webkit-scrollbar {
+.row-items::-webkit-scrollbar {
   display: none;
 }
-.row-item img {
+.row-items img {
   width: 100%;
   object-fit: contain;
   max-height: 100px;
@@ -15,6 +18,12 @@
   margin-right: 10px;
   border-radius: 5px;
 }
-.row-item img:hover {
+.row-items img:hover {
   transform: scale(1.08);
+}
+.bg-img img {
+  max-height: 250px;
+}
+.bg-img img:hover {
+  transform: scale(1.1);
 }
