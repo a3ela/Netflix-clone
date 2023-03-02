@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Row from "./Row";
+import Row from "./Row/index";
 import {
   TRENDING,
   ORIGIN,
@@ -14,8 +14,8 @@ import {
 const Home = () => {
   return (
     <>
-      <Row title="NETFLIX ORIGINALS" fetchUrl={ORIGIN} />
-      <Row title="Trending Now" fetchUrl={TRENDING} />
+      <Row title="NETFLIX ORIGINALS" url={ORIGIN} />
+      <Row title="Trending Now" url={TRENDING} />
     </>
   );
 };
