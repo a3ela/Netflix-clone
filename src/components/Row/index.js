@@ -5,9 +5,12 @@ import api from "../../API";
 import { IMAGE_URL } from "../../config";
 // style row
 import "./row.css";
+import YouTube from "react-youtube";
+import movieTrailer from "movie-trailer";
 
 const Row = ({ title, url, isLarge }) => {
   const [movies, setMovies] = useState([]);
+  const [trailerUrl, setTrailerUrl] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,6 +21,25 @@ const Row = ({ title, url, isLarge }) => {
     fetchData();
   }, [url]);
 
+  const opts = {
+    height: "390",
+    width: "640",
+    playerVars: {
+      autoplay: 1,
+    },
+  };
+  const handleClick = (movie) => {
+    if (trailerUrl) {
+      setTrailerUrl("");
+    } else {
+      movieTrailer(movie?.name || "")
+        .then((url) => {
+          const urlParams = new URLSearchParams(new URL(url).search);
+          setTrailerUrl(urlParams.get("v"));
+        })
+        .catch((err) => console.error(err));
+    }
+  };
   return (
     <div className="row">
       <h2>{title}</h2>
@@ -27,11 +49,13 @@ const Row = ({ title, url, isLarge }) => {
             src={`${IMAGE_URL}${
               isLarge ? movie.poster_path : movie.backdrop_path
             }`}
+            onClick={handleClick(movie)}
             key={movie.id}
             alt={movie.name}
           />
         ))}
       </div>
+      {trailerUrl && <YouTube videoId={trailerUrl} opts={opts} />}
     </div>
   );
 };
