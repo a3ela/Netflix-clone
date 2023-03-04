@@ -1,0 +1,14 @@
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99999;
+}
+.nav img {
+  width: 100px;
+  object-fit: contain;
+}
+.nav-black {
+  background-color: #000;
+  transition: background 0.5s ease-in;
+}
